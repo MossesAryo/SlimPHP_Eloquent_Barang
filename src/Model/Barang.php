@@ -2,19 +2,21 @@
 namespace App\Model;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class User extends Eloquent {
+class Barang extends Eloquent {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'users';
+	protected $table = 'barang';
 
 	protected $guarded = [];
 
-	public function role()
+	
+
+	public function kategori()
 	{
-		return $this->belongsTo(Role::class, 'role_id');
+		return $this->belongsTo(Kategori::class, 'id_kategori', 'id_kategori');
 	}
 }

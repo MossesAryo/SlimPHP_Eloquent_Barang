@@ -33,9 +33,9 @@
             "App\\": "src/"
         }
     },
-    "scripts": {
-        "serve": [
-            "cd public && php -S localhost:8000"
-        ]
-    }
+        "scripts": {
+            "serve": [
+                "cd public && php -S localhost:8000"
+            ]
+        }
 }
