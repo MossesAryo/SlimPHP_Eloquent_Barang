@@ -2,20 +2,20 @@
 namespace App\Model;
 use Illuminate\Database\Eloquent\Model as Eloquent;
 
-class Kategori extends Eloquent {
+class Pelanggan extends Eloquent {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'kategori';
+	protected $table = 'pelanggan';
 	protected $primaryKey = 'id';
 
 	protected $guarded = [];
 
-    public function barang()
+    public function transaksi()
     {
-        return $this->hasMany(Barang::class, 'id','kategori_id');
+        return $this->hasMany(Transaksi::class, 'id','pelanggan_id');
     }
 }   

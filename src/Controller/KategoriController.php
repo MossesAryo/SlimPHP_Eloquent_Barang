@@ -2,25 +2,25 @@
 
 namespace App\Controller;
 
-use App\Model\Barang;
+use App\Model\Kategori;
 use App\Helper\JsonResponse;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 
-final class BarangController
+final class KategoriController
 {
     
         
 
    public function index(Request $request, Response $response): Response
     {
-        $barang = Barang::with('kategori')->get();
+        $kategori = Kategori::get();
 
         $result['status']   = true;
         $result['data']     = [
-            'message' => 'This is Barang Controller',
-            'barang' => $barang
+            'message' => 'This is kategori Controller',
+            'kategori' => $kategori
         ];
         
         return JsonResponse::withJson($response, $result, 200);
@@ -29,12 +29,12 @@ final class BarangController
     {
         $data = (array)$request->getParsedBody();
 
-        $barang = Barang::create($data);
+        $kategori = Kategori::create($data);
 
         $result['status']   = true;
         $result['data']     = [
-            'message' => 'Barang created successfully',
-            'barang' => $barang
+            'message' => 'kategori created successfully',
+            'kategori' => $kategori
         ];
         
         return JsonResponse::withJson($response, $result, 201);
@@ -44,21 +44,21 @@ final class BarangController
         $id = (int)$args['id'];
         $data = (array)$request->getParsedBody();
 
-        $barang = Barang::where('id',$id)->first();
-        if (!$barang) {
+        $kategori = kategori::where('id',$id)->first();
+        if (!$kategori) {
             $result['status']   = false;
             $result['data']     = [
-                'message' => 'Barang not found'
+                'message' => 'kategori not found'
             ];
             return JsonResponse::withJson($response, $result, 404);
         }
 
-        $barang->update($data);
+        $kategori->update($data);
 
         $result['status']   = true;
         $result['data']     = [
-            'message' => 'Barang updated successfully',
-            'barang' => $barang
+            'message' => 'kategori updated successfully',
+            'kategori' => $kategori
         ];
         
         return JsonResponse::withJson($response, $result, 200);
@@ -67,20 +67,20 @@ final class BarangController
     {
         $id = (int)$args['id'];
 
-        $barang = Barang::where('id',$id)->first();
-        if (!$barang) {
+        $kategori = kategori::where('id',$id)->first();
+        if (!$kategori) {
             $result['status']   = false;
             $result['data']     = [
-                'message' => 'Barang not found'
+                'message' => 'kategori not found'
             ];
             return JsonResponse::withJson($response, $result, 404);
         }
 
-        $barang->delete();
+        $kategori->delete();
 
         $result['status']   = true;
         $result['data']     = [
-            'message' => 'Barang deleted successfully'
+            'message' => 'kategori deleted successfully'
         ];
         
         return JsonResponse::withJson($response, $result, 200);

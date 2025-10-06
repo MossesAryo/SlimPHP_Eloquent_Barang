@@ -10,6 +10,7 @@ class Barang extends Eloquent {
 	 * @var string
 	 */
 	protected $table = 'barang';
+	protected $primaryKey = 'id';
 
 	protected $guarded = [];
 
@@ -17,6 +18,6 @@ class Barang extends Eloquent {
 
 	public function kategori()
 	{
-		return $this->belongsTo(Kategori::class, 'id_kategori', 'id_kategori');
+		return $this->belongsTo(Kategori::class, 'kategori_id', 'id');
 	}
 }
