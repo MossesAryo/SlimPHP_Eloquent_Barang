@@ -18,10 +18,8 @@ final class PelangganController
         $pelanggan = Pelanggan::get();
 
         $result['status']   = true;
-        $result['data']     = [
-            'message' => 'This is pelanggan Controller',
-            'pelanggan' => $pelanggan
-        ];
+        $result['message']  = 'List of pelanggan';
+        $result['data']     = $pelanggan;
         
         return JsonResponse::withJson($response, $result, 200);
     }
@@ -32,10 +30,8 @@ final class PelangganController
         $pelanggan = Pelanggan::create($data);
 
         $result['status']   = true;
-        $result['data']     = [
-            'message' => 'pelanggan created successfully',
-            'pelanggan' => $pelanggan
-        ];
+        $result['message']  = 'pelanggan created successfully';
+        $result['data']     = $pelanggan;
         
         return JsonResponse::withJson($response, $result, 201);
     }
@@ -47,19 +43,15 @@ final class PelangganController
         $pelanggan = pelanggan::where('id',$id)->first();
         if (!$pelanggan) {
             $result['status']   = false;
-            $result['data']     = [
-                'message' => 'pelanggan not found'
-            ];
+            $result['message']  = 'pelanggan not found';
             return JsonResponse::withJson($response, $result, 404);
         }
 
         $pelanggan->update($data);
 
         $result['status']   = true;
-        $result['data']     = [
-            'message' => 'pelanggan updated successfully',
-            'pelanggan' => $pelanggan
-        ];
+        $result['message']  = 'pelanggan updated successfully';
+        $result['data']     = $pelanggan;
         
         return JsonResponse::withJson($response, $result, 200);
     }
@@ -70,18 +62,14 @@ final class PelangganController
         $pelanggan = pelanggan::where('id',$id)->first();
         if (!$pelanggan) {
             $result['status']   = false;
-            $result['data']     = [
-                'message' => 'pelanggan not found'
-            ];
+            $result['message']  = 'pelanggan not found';
             return JsonResponse::withJson($response, $result, 404);
         }
 
         $pelanggan->delete();
 
         $result['status']   = true;
-        $result['data']     = [
-            'message' => 'pelanggan deleted successfully'
-        ];
+        $result['message']     = 'pelanggan deleted successfully';
         
         return JsonResponse::withJson($response, $result, 200);
     }

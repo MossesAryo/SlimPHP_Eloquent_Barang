@@ -11,6 +11,8 @@ class Pelanggan extends Eloquent {
 	 */
 	protected $table = 'pelanggan';
 	protected $primaryKey = 'id';
+	public $timestamps = false;
+    
 
 	protected $guarded = [];
 

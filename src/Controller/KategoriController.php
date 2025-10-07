@@ -18,10 +18,8 @@ final class KategoriController
         $kategori = Kategori::get();
 
         $result['status']   = true;
-        $result['data']     = [
-            'message' => 'This is kategori Controller',
-            'kategori' => $kategori
-        ];
+        $result['message']  = 'List of kategori';
+        $result['data']     = $kategori;
         
         return JsonResponse::withJson($response, $result, 200);
     }
@@ -32,10 +30,8 @@ final class KategoriController
         $kategori = Kategori::create($data);
 
         $result['status']   = true;
-        $result['data']     = [
-            'message' => 'kategori created successfully',
-            'kategori' => $kategori
-        ];
+        $result['message']  = 'Kategori created successfully';
+        $result['data']     = $kategori;
         
         return JsonResponse::withJson($response, $result, 201);
     }
@@ -47,19 +43,15 @@ final class KategoriController
         $kategori = kategori::where('id',$id)->first();
         if (!$kategori) {
             $result['status']   = false;
-            $result['data']     = [
-                'message' => 'kategori not found'
-            ];
+            $result['message']  = 'kategori not found';
             return JsonResponse::withJson($response, $result, 404);
         }
 
         $kategori->update($data);
 
         $result['status']   = true;
-        $result['data']     = [
-            'message' => 'kategori updated successfully',
-            'kategori' => $kategori
-        ];
+        $result['message']  = 'kategori updated successfully';
+        $result['data']     = $kategori;
         
         return JsonResponse::withJson($response, $result, 200);
     }
@@ -70,18 +62,14 @@ final class KategoriController
         $kategori = kategori::where('id',$id)->first();
         if (!$kategori) {
             $result['status']   = false;
-            $result['data']     = [
-                'message' => 'kategori not found'
-            ];
+            $result['message']  = 'kategori not found';
             return JsonResponse::withJson($response, $result, 404);
         }
 
         $kategori->delete();
 
         $result['status']   = true;
-        $result['data']     = [
-            'message' => 'kategori deleted successfully'
-        ];
+        $result['message']  = 'kategori deleted successfully';
         
         return JsonResponse::withJson($response, $result, 200);
     }

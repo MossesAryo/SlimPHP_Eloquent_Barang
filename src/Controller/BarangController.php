@@ -18,10 +18,8 @@ final class BarangController
         $barang = Barang::with('kategori')->get();
 
         $result['status']   = true;
-        $result['data']     = [
-            'message' => 'This is Barang Controller',
-            'barang' => $barang
-        ];
+        $result['message']  = 'List of barang';
+        $result['data']     = $barang;
         
         return JsonResponse::withJson($response, $result, 200);
     }
@@ -32,10 +30,8 @@ final class BarangController
         $barang = Barang::create($data);
 
         $result['status']   = true;
-        $result['data']     = [
-            'message' => 'Barang created successfully',
-            'barang' => $barang
-        ];
+        $result['message']  = 'Barang created successfully';
+        $result['data']     = $barang;
         
         return JsonResponse::withJson($response, $result, 201);
     }
@@ -47,19 +43,15 @@ final class BarangController
         $barang = Barang::where('id',$id)->first();
         if (!$barang) {
             $result['status']   = false;
-            $result['data']     = [
-                'message' => 'Barang not found'
-            ];
+            $result['message']  = 'Barang not found';
             return JsonResponse::withJson($response, $result, 404);
         }
 
         $barang->update($data);
 
         $result['status']   = true;
-        $result['data']     = [
-            'message' => 'Barang updated successfully',
-            'barang' => $barang
-        ];
+        $result['message']  = 'Barang updated successfully';
+        $result['data']     = $barang;
         
         return JsonResponse::withJson($response, $result, 200);
     }
@@ -70,18 +62,15 @@ final class BarangController
         $barang = Barang::where('id',$id)->first();
         if (!$barang) {
             $result['status']   = false;
-            $result['data']     = [
-                'message' => 'Barang not found'
-            ];
+            $result['message']  = 'Barang not found';
+           
             return JsonResponse::withJson($response, $result, 404);
         }
 
         $barang->delete();
 
         $result['status']   = true;
-        $result['data']     = [
-            'message' => 'Barang deleted successfully'
-        ];
+        $result['message']  = 'Barang deleted successfully';
         
         return JsonResponse::withJson($response, $result, 200);
     }

@@ -10,19 +10,17 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 
 final class TransaksiController
 {
-    
-        
 
-   public function index(Request $request, Response $response): Response
+
+
+    public function index(Request $request, Response $response): Response
     {
-        $transaksi = Transaksi::with('pelanggan','barang')->get();
+        $transaksi = Transaksi::with('pelanggan', 'barang')->get();
 
         $result['status']   = true;
-        $result['data']     = [
-            'message' => 'This is transaksi Controller',
-            'transaksi' => $transaksi
-        ];
-        
+        $result['message']  = 'List of transaksi';
+        $result['data']     = $transaksi;   
+
         return JsonResponse::withJson($response, $result, 200);
     }
     public function store(Request $request, Response $response): Response
@@ -32,11 +30,9 @@ final class TransaksiController
         $transaksi = Transaksi::create($data);
 
         $result['status']   = true;
-        $result['data']     = [
-            'message' => 'transaksi created successfully',
-            'transaksi' => $transaksi
-        ];
-        
+        $result['message']  = 'transaksi created successfully';
+        $result['data']     = $transaksi;
+
         return JsonResponse::withJson($response, $result, 201);
     }
     public function update(Request $request, Response $response, array $args): Response
@@ -44,45 +40,40 @@ final class TransaksiController
         $id = (int)$args['id'];
         $data = (array)$request->getParsedBody();
 
-        $transaksi = Transaksi::where('id',$id)->first();
+        $transaksi = Transaksi::where('id', $id)->first();
+
         if (!$transaksi) {
-            $result['status']   = false;
-            $result['data']     = [
-                'message' => 'transaksi not found'
-            ];
+            $result['status'] = false;
+            $result['message'] = 'Transaksi tidak ditemukan';
             return JsonResponse::withJson($response, $result, 404);
         }
 
         $transaksi->update($data);
 
-        $result['status']   = true;
-        $result['data']     = [
-            'message' => 'transaksi updated successfully',
-            'transaksi' => $transaksi
-        ];
-        
+        $result['status'] = true;
+        $result['message'] = 'Transaksi berhasil diperbarui';
+        $result['data'] = $transaksi;
+
         return JsonResponse::withJson($response, $result, 200);
     }
     public function destroy(Request $request, Response $response, array $args): Response
     {
         $id = (int)$args['id'];
 
-        $transaksi = Transaksi::where('id',$id)->first();
+        $transaksi = Transaksi::where('id', $id)->first();
         if (!$transaksi) {
             $result['status']   = false;
-            $result['data']     = [
-                'message' => 'transaksi not found'
-            ];
+            $result['message']  = 'transaksi not found';
+         
             return JsonResponse::withJson($response, $result, 404);
         }
 
         $transaksi->delete();
 
         $result['status']   = true;
-        $result['data']     = [
-            'message' => 'transaksi deleted successfully'
-        ];
-        
+        $result['message']  = 'transaksi deleted successfully';
+       
+
         return JsonResponse::withJson($response, $result, 200);
     }
 }

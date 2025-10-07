@@ -11,6 +11,8 @@ class Transaksi extends Eloquent {
 	 */
 	protected $table = 'transaksi';
 	protected $primaryKey = 'id';
+	public $timestamps = false;
+	
 
 	protected $guarded = [];
 
